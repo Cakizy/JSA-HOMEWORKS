@@ -3,7 +3,7 @@
 //     return new Promise((resolve, reject) => {
 //         setTimeout(() => {
 //             if (num > 10) {
-//                 resolve(`Succsess`)
+//                 resolve(`Success`)
 //             } else {
 //                 reject(`Error`)
 //             }
@@ -11,37 +11,39 @@
 //     })
 // }
 // testNumber(20)
-//     .then(succsess => console.log(succsess))
+//     .then(success => console.log(success))
 //     .catch(err => console.log(err))
 //     .finally(() => console.log(`Everything is done at: ${Math.round(performance.now()) / 1000}s))
 
 // TASK 2
 let myArray = [`lolz`, `troll`, `wowz`, `afas`];
 let newArray = [];
-checker = elements => {
+
+const checker = elements => {
     for (const element of elements) {
-        if (typeof element != `string`) {
-            return false
+        if (typeof element !== `string`) {
+            return false;
         }
     }
     return true;
 }
-changeAllToCaps = stringArray => {
+
+const changeAllToCaps = stringArray => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if (checker(stringArray) === true) {
-                    resolve(`Succsess`)
-                    newArray = stringArray.map(element => element.toUpperCase())
+                if (checker(stringArray)) {
+                    resolve(`Success`);
+                    newArray = stringArray.map(element => element.toUpperCase());
                 } else {
-                    reject(`Error`)
+                    reject(`Error`);
                 }
 
             }, 2000);
         })
     }
     // changeAllToCaps(myArray)
-    //     .then(succsess => {
-    //         console.log(succsess)
+    //     .then(success => {
+    //         console.log(success)
     //         console.log(newArray)
     //     })
     //     .catch(err => console.log(err))
@@ -50,16 +52,18 @@ changeAllToCaps = stringArray => {
 
 // TASK 2.2
 
-sorting = element => element.sort()
-let sortedCaps = []
-changeAllToCapsSorted = stringArray => {
+// element bas i ne e opisno ime za nekoja niza ...
+sorting = elements => elements.sort();
+let sortedCaps = [];
+
+const changeAllToCapsSorted = stringArray => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (stringArray.length <= 1) {
-                reject(`ERROR BLYET: There are not enough words to be sorted`)
+                reject(`ERROR BLYET: There are not enough words to be sorted`);
             } else {
-                resolve(`Succsess`)
-                sortedCaps = sorting(stringArray)
+                resolve(`Success`);
+                sortedCaps = sorting(stringArray);
             }
         }, 2000);
     })
@@ -77,23 +81,23 @@ changeAllToCapsSorted = stringArray => {
 //     .finally(() => console.log(`Everything is done at: ${Math.round(performance.now()) / 1000}s))
 
 // Task 2.3
-// changeAllToCaps(myArray)
-//     .then(succsess => {
-//         console.log(succsess)
-//         return changeAllToCapsSorted(newArray)
-//     })
-//     .then(succsess => {
-//         console.log(succsess)
-//         console.log(sortedCaps)
-//     })
-//     .catch(err => console.log(err))
-//     .finally(() => console.log(`Everything is done at: ${Math.round(performance.now()) / 1000}s`))
+changeAllToCaps(myArray)
+    .then(success => {
+        console.log(success);
+        return changeAllToCapsSorted(newArray);
+    })
+    .then(success => {
+        console.log(success);
+        console.log(sortedCaps);
+    })
+    .catch(err => console.log(err))
+    .finally(() => console.log(`Everything is done at: ${Math.round(performance.now()) / 1000}s`))
 
 
 // Task BONUS
 
-
-asyncFunc = async(param1) => {
+// param1 uste pomalce :D
+const asyncFunc = async param1 => {
     try {
         let changeCaps = await changeAllToCaps(param1);
         console.log(changeCaps);
